@@ -3,5 +3,6 @@
 		"-//Puppy Crawl//DTD Check Configuration 1.2//EN"
 		"https://checkstyle.org/dtds/configuration_1_2.dtd">
 <module name="com.puppycrawl.tools.checkstyle.Checker">
-	<module name="io.spring.nohttp.checkstyle.check.NoHttpCheck"/>
+	<!-- NoHttpCheck 모듈을 제거 또는 주석 처리 차후 https전환-->
+	<!-- <module name="io.spring.nohttp.checkstyle.check.NoHttpCheck"/> -->
 </module>

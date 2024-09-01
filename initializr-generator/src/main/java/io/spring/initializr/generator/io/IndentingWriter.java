@@ -103,7 +103,7 @@ public class IndentingWriter extends Writer {
 	/**
 	 * Increase the indentation level.
 	 */
-	private void indent() {
+	public void indent() {
 		this.level++;
 		refreshIndent();
 	}
@@ -111,7 +111,7 @@ public class IndentingWriter extends Writer {
 	/**
 	 * Decrease the indentation level.
 	 */
-	private void outdent() {
+	public void outdent() {
 		this.level--;
 		refreshIndent();
 	}

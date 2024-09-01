@@ -38,7 +38,21 @@ public abstract class GradleSettingsWriter {
 	 * @param build the gradle build to write
 	 */
 	public final void writeTo(IndentingWriter writer, GradleBuild build) {
-		writePluginManagement(writer, build);
+		writer.println("pluginManagement {");
+		writer.indent();
+		writer.println("repositories {");
+		writer.indent();
+		writer.println("maven {");
+		writer.indent();
+		writer.println("allowInsecureProtocol = true");
+		writer.println("url \"http://nexus.hwgeneralins.com:8082/repository/maven-public/\"");
+		writer.outdent();
+		writer.println("}");
+		writer.outdent();
+		writer.println("}");
+		writer.outdent();
+		writer.println("}");
+
 		writer.println("rootProject.name = " + wrapWithQuotes(build.getSettings().getArtifact()));
 	}
 
@@ -92,9 +106,10 @@ public abstract class GradleSettingsWriter {
 
 	private String repositoryAsString(MavenRepository repository) {
 		if (MavenRepository.MAVEN_CENTRAL.equals(repository)) {
-			return "mavenCentral()";
+			return "//mavenCentral()";
 		}
-		return "maven { " + urlAssignment(repository.getUrl()) + " }";
+		return "maven {\n" + "    allowInsecureProtocol = true\n" + "    url " + urlAssignment(repository.getUrl())
+				+ "\n" + "}";
 	}
 
 	protected abstract String wrapWithQuotes(String value);

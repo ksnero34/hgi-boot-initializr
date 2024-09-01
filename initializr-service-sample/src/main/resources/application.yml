@@ -21,6 +21,8 @@ initializr:
       id: groovy
       default: false
   javaVersions:
+    - id: 21
+      default: false
     - id: 17
       default: true
     - id: 11

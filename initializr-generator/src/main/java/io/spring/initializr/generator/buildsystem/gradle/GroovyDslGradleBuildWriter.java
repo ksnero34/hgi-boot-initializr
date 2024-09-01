@@ -90,9 +90,9 @@ public class GroovyDslGradleBuildWriter extends GradleBuildWriter {
 	@Override
 	protected String repositoryAsString(MavenRepository repository) {
 		if (MavenRepository.MAVEN_CENTRAL.equals(repository)) {
-			return "mavenCentral()";
+			return "//mavenCentral()";
 		}
-		return "maven { url '" + repository.getUrl() + "' }";
+		return "maven {\n" + "    allowInsecureProtocol = true\n" + "    url '" + repository.getUrl() + "'\n" + "}";
 	}
 
 	@Override

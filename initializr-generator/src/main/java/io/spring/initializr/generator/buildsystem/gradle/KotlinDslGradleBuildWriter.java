@@ -88,9 +88,10 @@ public class KotlinDslGradleBuildWriter extends GradleBuildWriter {
 	@Override
 	protected String repositoryAsString(MavenRepository repository) {
 		if (MavenRepository.MAVEN_CENTRAL.equals(repository)) {
-			return "mavenCentral()";
+			return "//mavenCentral()";
 		}
-		return "maven { url = uri(\"" + repository.getUrl() + "\") }";
+		return "maven {\n" + "    allowInsecureProtocol = true\n" + "    url = uri(\"" + repository.getUrl() + "\")\n"
+				+ "}";
 	}
 
 	@Override
